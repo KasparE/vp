@@ -6,16 +6,16 @@
   if($hournow < 6) {
 	$partofday = "uneaeg";
   }// enne 6
-  if($hournow >= 8 and $hournow <= 11){
+  if($hournow >= 8 and $hournow < 11){
 	  $partofday = "õppimise aeg";
   }
-  if($hournow >= 12 and $hournow <= 13){
+  if($hournow >= 12 and $hournow < 13){
 	$partofday = "lõuna aeg";
   }
-  if($hournow >= 14 and $hournow <= 17){
+  if($hournow >= 14 and $hournow < 17){
 	$partofday = "töö aeg";
   }
-  if($hournow >= 18 and $hournow <= 20){
+  if($hournow >= 18 and $hournow < 20){
 	$partofday = "vaba aeg";
   }
   if($hournow > 20) {
@@ -29,16 +29,33 @@
   $semesterduration = $semesterstart->diff($semesterend);
   $semesterdurationdays = $semesterduration->format("%r%a");
   
-  $today = new DateTime("now");
-  $semesterpassed = $semesterstart->diff($today);
-  $semesterpasseddays = $semesterpassed->format("%r%a");
+    $today = new DateTime("now");
+  $fromsemesterstart = $semesterstart->diff($today);
+  //saime aja erinevuse objektina, seda niisama näidata ei saa
+  $fromsemesterstartdays = $fromsemesterstart->format("%r%a");
+  $semesterpercentage = 0;
+  
+  
+  
+  $semesterinfo = "Semester kulgeb vastavalt akadeemilisele kalendrile.";
+  if($semesterstart > $today){
+	  $semesterinfo = "Semester pole veel peale hakanud!";
+  }
+  if($fromsemesterstartdays === 0){
+	  $semesterinfo = "Semester algab täna!";
+  }
+  if($fromsemesterstartdays > 0 and $fromsemesterstartdays < $semesterdurationdays){
+	  $semesterpercentage = ($fromsemesterstartdays / $semesterdurationdays) * 100;
+	  $semesterinfo = "Semester on täies hoos, kestab juba " .$fromsemesterstartdays ." päeva, läbitud on " .$semesterpercentage ."%.";
+  }
+  if($fromsemesterstartdays == $semesterdurationdays){
+	  $semesterinfo = "Semester lõppeb täna!";
+  }
+  if($fromsemesterstartdays > $semesterdurationdays){
+	  $semesterinfo = "Semester on läbi saanud!";
+  }
   
 
-  
-  $semesterpercentage = $semesterpasseddays / $semesterend;   // kestnud päevad/kõik päevad *100
-  #@semestertime = "Semester hetkel veel käib"
-  #if($semesterpercentage >= 100) {
-	#$semestertime = "Semester on läbi saanud";
   
   
   
@@ -57,9 +74,7 @@
   <p>Lehe avamise hetk: <?php echo $fulltimenow; ?>.</p>
   <p><?php echo "Praegu on " .$partofday ."."; ?></p>
   
-  <p><?php echo "Semestri lõpuni on jäänud " .$semesterdurationdays ." päeva."; ?></p>
-  <p><?php echo "Semestri algas " .$semesterpasseddays ." päeva tagasi."; ?></p>
-  <p><?php echo "Semestrist on läbitud " .$semesterpercentage ." (hetkel vale)%"; ?></p>
+  <p><?php echo $semesterinfo; ?></p>
   
   
 
