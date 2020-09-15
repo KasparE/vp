@@ -6,16 +6,40 @@
   if($hournow < 6) {
 	$partofday = "uneaeg";
   }// enne 6
-  if($hournow >= 8 and $hournow <= 18); {
-	$partofday = "õppimise aeg";
+  if($hournow >= 8 and $hournow <= 11){
+	  $partofday = "õppimise aeg";
+  }
+  if($hournow >= 12 and $hournow <= 13){
+	$partofday = "lõuna aeg";
+  }
+  if($hournow >= 14 and $hournow <= 17){
+	$partofday = "töö aeg";
+  }
+  if($hournow >= 18 and $hournow <= 20){
+	$partofday = "vaba aeg";
+  }
+  if($hournow > 20) {
+	$partofday = "õhtune aeg";
   }
   
-  //vaatame semestri kulgemist
+ 
+//vaatame semestri kulgemist
   $semesterstart = new DateTime("2020-8-31");
-  $semestrend = new DateTime("2020-12-13");
-  $semesterduration = $semesterstart->diff($semestrend); 
-  $semesterdurationdays = $semesterduration->format("$r$a");
+  $semesterend = new DateTime("2020-12-13");
+  $semesterduration = $semesterstart->diff($semesterend);
+  $semesterdurationdays = $semesterduration->format("%r%a");
+  
   $today = new DateTime("now");
+  $semesterpassed = $semesterstart->diff($today);
+  $semesterpasseddays = $semesterpassed->format("%r%a");
+  
+
+  
+  $semesterpercentage = $semesterpasseddays / $semesterend;   // kestnud päevad/kõik päevad *100
+  #@semestertime = "Semester hetkel veel käib"
+  #if($semesterpercentage >= 100) {
+	#$semestertime = "Semester on läbi saanud";
+  
   
   
 ?>
@@ -29,8 +53,17 @@
 <body>
   <h1><?php echo $username; ?></h1>
   <p>See veebileht on loodud õppetöö kaigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
-  <p>See konkreetne leht on loodud veebiprogrameerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli<a/> Digitehnoloogia instituudis<p> <a>Lehe avamise hetk <a/> <?php echo $fulltimenow; ?></p>
-  <p><?php echo "Praegu on " .$partofday ."."; ?></p> 
+  <p>See konkreetne leht on loodud veebiprogrameerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli<a/> Digitehnoloogia instituudis</p> 
+  <p>Lehe avamise hetk: <?php echo $fulltimenow; ?>.</p>
+  <p><?php echo "Praegu on " .$partofday ."."; ?></p>
+  
+  <p><?php echo "Semestri lõpuni on jäänud " .$semesterdurationdays ." päeva."; ?></p>
+  <p><?php echo "Semestri algas " .$semesterpasseddays ." päeva tagasi."; ?></p>
+  <p><?php echo "Semestrist on läbitud " .$semesterpercentage ." (hetkel vale)%"; ?></p>
+  
+  
+
+  
   
  
 
