@@ -46,8 +46,9 @@
 			<input type="submit" name="ideasubmit" value="Saada mõte ära!">
 	</form>
 	<hr>
-	<p> <a href="http://greeny.cs.tlu.ee/~carleen/vp/tund%203/Home.php"> Siit<a/> saad tagasi koju.</p>
-
+	<ul>
+		<li><a href="http://greeny.cs.tlu.ee/~carleen/vp/tund%203/Home.php"> Siit<a/> saad tagasi koju.
+	</ul>
 
 <body>
 </html>

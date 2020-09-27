@@ -40,7 +40,7 @@
   $semesterduration = $semesterstart->diff($semesterend);
   $semesterdurationdays = $semesterduration->format("%r%a");
   
-    $today = new DateTime("now");
+  $today = new DateTime("now");
   $fromsemesterstart = $semesterstart->diff($today);
   //saime aja erinevuse objektina, seda niisama näidata ei saa
   $fromsemesterstartdays = $fromsemesterstart->format("%r%a");
@@ -67,13 +67,13 @@
   }
   
     //annan ette lubatud pildivormingute loedi
-  $picfiletypes = ["image/jpeg", "image/png"];
-  
+  $picfiletypes = ["image/jpeg", "image/png"]; 
   //loeme piltide kataloogi sisu ja näitame pilte
   //$allfiles = scandir("../vp_pics/");
   $allfiles = array_slice(scandir("../vp_pics/"), 2);
   //var_dump =($allfiles);
-  $picfiles = array_slice ($allfiles, 2);
+  //$picfiles = array_slice ($allfiles, 2);
+  $picfiles = [];
   //var_dump($picfiles);
   foreach($allfiles as $thing){
 	$fileinfo = getImagesize("../vp_pics/" .$thing);
@@ -87,7 +87,7 @@
   
   //paneme kõik pildid ekraanile
   $piccount = count($picfiles);
-  $picnum = rand(0, 3);
+  //$picnum = rand(0, 3);
   //$i = $i + 1;
   //$i ++;
   //$i +=2;
@@ -107,19 +107,26 @@
 ?>
 	  
 
-
 	<img src="../img/vp_banner.png" alt="Veebiprogrameerimise kursuse bänner">
 	<h1><?php echo $username; ?></h1>
 	<p>See veebileht on loodud õppetöö kaigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
 	<p>See konkreetne leht on loodud veebiprogrameerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli<a/> Digitehnoloogia instituudis</p> 
+	
+	<ul>	
+		<li><a href="add_ideas">Sisesta siin oma mõte!<a/></li>
+		<li><a href="list_ideas.php"> Loe siin mõtteid!<a/></li>
+		<li><a href="add_films.php">Filmide list </a></li>
+		<li><a href="list_film.php"> Loe siin filme!<a/></li>
+	</ul>
+	
+	
 	<p>Lehe avamise hetk: <?php echo $weekdaynameset [$weekdaynow - 1].", ".$daynow.". " .$monthnameset [$monthnow - 1]." " .$yearnow.", kell " .$timenow; ?>.</p>
 	<p><?php echo "Praegu on " .$partofday ."."; ?></p>
 	<p><?php echo $semesterinfo; ?></p>
 	<hr>
 	<?php echo $imghtml; ?></p>
 	<hr>
-	<p>Sisesta <a href="http://greeny.cs.tlu.ee/~carleen/vp/tund 3/Home_mote"> siin<a/> oma mõte!</p>
-	<p>Loe <a href="http://greeny.cs.tlu.ee/~carleen/vp/tund%203/Home_lugeda.php"> siin<a/> erinevaid mõtteid!</p>
+	
 
 
 
