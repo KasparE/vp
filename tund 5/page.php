@@ -1,6 +1,6 @@
 <?php
  
-  $username = "Kaspar Eensalu";
+  $username = "";
   $fulltimenow = date ("d.m.Y H:i:s");
   $timenow = date ("H:i:s");
   $hournow = date ("H");
@@ -113,12 +113,11 @@
 	<p>See konkreetne leht on loodud veebiprogrameerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli<a/> Digitehnoloogia instituudis</p> 
 	
 	<ul>	
-		<li><a href="add_ideas">Sisesta siin oma mõte!<a/></li>
+		<!--<li><a href="add_ideas">Sisesta siin oma mõte!<a/></li>
 		<li><a href="list_ideas.php"> Loe siin mõtteid!<a/></li>
 		<li><a href="add_films.php">Filmide list </a></li>
-		<li><a href="list_film.php"> Loe siin filme!<a/></li>
+		<li><a href="list_film.php"> Loe siin filme!<a/></li> -->
 		<li><a href="addnewuser.php"> Kasutaja<a/></li>
-		<li><a href="page.php"> Page<a/></li>
 	</ul>
 	
 	
