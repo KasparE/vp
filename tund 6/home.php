@@ -1,11 +1,6 @@
 <?php
-  
-  require("../../../config.php");
-  require("fnc_common.php");
-  require("fnc_user.php");
  
- 
-  $username = "";
+  $username = "Kaspar Eensalu";
   $fulltimenow = date ("d.m.Y H:i:s");
   $timenow = date ("H:i:s");
   $hournow = date ("H");
@@ -108,44 +103,7 @@
   }*/
    $imghtml .= '<img src="../vp_pics/' .$picfiles[mt_rand(0, ($piccount - 1))] .'" ';
    $imghtml .= 'alt="Tallinna Ülikool">';
-  
-  $email = "";
-  
-  $emailerror = "";
-  $passworderror = "";
-  $notice = "";
-  
-  if(isset($_POST["submituserdata"])){
-	  if (!empty($_POST["emailinput"])){
-		//$email = test_input($_POST["emailinput"]);
-		$email = filter_var($_POST["emailinput"], FILTER_SANITIZE_EMAIL);
-		if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$email = filter_var($email, FILTER_VALIDATE_EMAIL);
-		} else {
-		  $emailerror = "Palun sisesta õige kujuga e-postiaadress!";
-		}		
-	  } else {
-		  $emailerror = "Palun sisesta e-postiaadress!";
-	  }
-	  
-	  if (empty($_POST["passwordinput"])){
-		$passworderror = "Palun sisesta salasõna!";
-	  } else {
-		  if(strlen($_POST["passwordinput"]) < 8){
-			  $passworderror = "Liiga lühike salasõna (sisestasite ainult " .strlen($_POST["passwordinput"]) ." märki).";
-		  }
-	  }
-	  
-	  if(empty($emailerror) and empty($passworderror)){
-		  echo "Juhhei!" .$email .$_POST["passwordinput"];
-		  $notice = signin($email, $_POST["passwordinput"]);
-	  }
-  }
-
-  
-  
   require("header.php");
-  
 ?>
 	  
 
@@ -155,24 +113,13 @@
 	<p>See konkreetne leht on loodud veebiprogrameerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli<a/> Digitehnoloogia instituudis</p> 
 	
 	<ul>	
-
-		<li><a href="addnewuser.php"> Kasutaja tegemine<a/></li>
+		<li><a href="add_ideas">Sisesta siin oma mõte!<a/></li>
+		<li><a href="list_ideas.php"> Loe siin mõtteid!<a/></li>
+		<li><a href="add_films.php">Filmide list </a></li>
+		<li><a href="list_film.php"> Loe siin filme!<a/></li>
+		<li><a href="addnewuser.php"> Kasutaja<a/></li>
+		<li><a href="page.php"> Page<a/></li>
 	</ul>
-	
-	<hr>
-	<h3>Logi sisse</h3>
-	<form method="POST" action="<?php> echo htmlspecialchars($_SERVER["PHP_SLEF"]);?>
-		 <label for="emailinput">E-mail (kasutajatunnus):</label>
-			<br>
-			<input type="email" name="emailinput" id="emailinput" value="<?php echo $email; ?>"><span><?php echo $emailerror; ?></span>
-			<br>
-			<label for="passwordinput">Salasõna:</label>
-			<br>
-			<input name="passwordinput" id="passwordinput" type="password"><span><?php echo $passworderror; ?></span>
-			<br>
-			<br>
-			<input name="submituserdata" type="submit" value="Logi sisse"><span><?php echo "&nbsp; &nbsp; &nbsp;" .$notice; ?></span>
-	</form>
 	
 	
 	<p>Lehe avamise hetk: <?php echo $weekdaynameset [$weekdaynow - 1].", ".$daynow.". " .$monthnameset [$monthnow - 1]." " .$yearnow.", kell " .$timenow; ?>.</p>

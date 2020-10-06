@@ -137,7 +137,7 @@
 	  }
 	  
 	  if(empty($emailerror) and empty($passworderror)){
-		  echo "Juhhei!" .$email .$_POST["passwordinput"];
+		  //echo "Juhhei!" .$email .$_POST["passwordinput"];
 		  $notice = signin($email, $_POST["passwordinput"]);
 	  }
   }
@@ -160,19 +160,19 @@
 	</ul>
 	
 	<hr>
-	<h3>Logi sisse</h3>
-	<form method="POST" action="<?php> echo htmlspecialchars($_SERVER["PHP_SLEF"]);?>
-		 <label for="emailinput">E-mail (kasutajatunnus):</label>
-			<br>
-			<input type="email" name="emailinput" id="emailinput" value="<?php echo $email; ?>"><span><?php echo $emailerror; ?></span>
-			<br>
-			<label for="passwordinput">Salasõna:</label>
-			<br>
-			<input name="passwordinput" id="passwordinput" type="password"><span><?php echo $passworderror; ?></span>
-			<br>
-			<br>
-			<input name="submituserdata" type="submit" value="Logi sisse"><span><?php echo "&nbsp; &nbsp; &nbsp;" .$notice; ?></span>
-	</form>
+  <h3>Logi sisse</h3>
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <label for="emailinput">E-mail (kasutajatunnus):</label><br>
+	  <input type="email" name="emailinput" id="emailinput" value="<?php echo $email; ?>"><span><?php echo $emailerror; ?></span>
+	  <br>
+	  <label for="passwordinput">Salasõna:</label>
+	  <br>
+	  <input name="passwordinput" id="passwordinput" type="password"><span><?php echo $passworderror; ?></span>
+	  <br>
+	  <br>
+	  <input name="submituserdata" type="submit" value="Logi sisse"><span><?php echo "&nbsp; &nbsp; &nbsp;" .$notice; ?></span>
+  </form>
+  <hr>
 	
 	
 	<p>Lehe avamise hetk: <?php echo $weekdaynameset [$weekdaynow - 1].", ".$daynow.". " .$monthnameset [$monthnow - 1]." " .$yearnow.", kell " .$timenow; ?>.</p>
