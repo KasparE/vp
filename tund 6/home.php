@@ -1,6 +1,9 @@
 <?php
  
-  $username = "Kaspar Eensalu";
+  require("usesession.php");
+  require("header.php");
+  
+  //$username = "Kaspar Eensalu";
   $fulltimenow = date ("d.m.Y H:i:s");
   $timenow = date ("H:i:s");
   $hournow = date ("H");
@@ -103,14 +106,17 @@
   }*/
    $imghtml .= '<img src="../vp_pics/' .$picfiles[mt_rand(0, ($piccount - 1))] .'" ';
    $imghtml .= 'alt="Tallinna Ülikool">';
-  require("header.php");
+  
 ?>
 	  
 
 	<img src="../img/vp_banner.png" alt="Veebiprogrameerimise kursuse bänner">
-	<h1><?php echo $username; ?></h1>
+	<h1><?php echo $_SESSION["userfirstname"] ." " .$_SESSION["userlastname"]; ?></h1>
 	<p>See veebileht on loodud õppetöö kaigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
 	<p>See konkreetne leht on loodud veebiprogrameerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli<a/> Digitehnoloogia instituudis</p> 
+	
+	<p><a href="?logout=1">Logi välja!</a></p>
+	
 	
 	<ul>	
 		<li><a href="add_ideas">Sisesta siin oma mõte!<a/></li>
@@ -119,6 +125,7 @@
 		<li><a href="list_film.php"> Loe siin filme!<a/></li>
 		<li><a href="addnewuser.php"> Kasutaja<a/></li>
 		<li><a href="page.php"> Page<a/></li>
+		<li><a href="userprofile.php">Minu kasutajaprofiil</a></li>
 	</ul>
 	
 	
